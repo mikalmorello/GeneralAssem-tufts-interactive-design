@@ -1,0 +1,40 @@
+/* SECTION */
+/*
+- SECTION
+- SECTION SEARCH
+- SECTION LOAD MORE
+- SECTION VARIANTS
+*/
+
+
+// SECTION
+
+.section {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+// SECTION SEARCH
+
+.section--search {
+  margin: 1.5rem auto;
+  z-index: 2;
+}
+
+// SECTION INFINITE LOAD
+
+.section--infinite-load {
+  padding: 1rem 0 0 0;
+}
+ 
+
+// SECTION LOAD MORE
+
+.section--load-more {
+  align-self: flex-end;
+  display: flex;
+  margin: 0 auto;
+  padding: 0 2rem 2rem 2rem;
+  overflow: hidden;
+}
