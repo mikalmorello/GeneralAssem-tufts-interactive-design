@@ -46,7 +46,11 @@ function loadResults(response){
   for(let i = 0; i < hits.length; i++) { 
     let projectTitle =  hits[i].title,
         projectSubtitle =  hits[i].field_project_subtitle,
-        projectBanner =  hits[i].field_project_banner;
+        projectBanner =  hits[i].field_project_banner,
+        projectUrl =  hits[i].field_project_link,
+        projectDescription =  hits[i].field_project_description,
+        teamName = hits[i].title_1,
+        teamLocation = hits[i].field_team_location;
     resultContainer.innerHTML += 
      `<article class="project-card slideInUp">
         <div class="project-card__media">
@@ -55,6 +59,10 @@ function loadResults(response){
         <div class="project-card__content">
           <h2 class="project-card__title">${projectTitle}</h2>
           <h3 class="project-card__subtitle">${projectSubtitle}</h3>
+          <a href=">${projectUrl}">${projectUrl}</a>
+          <div>${projectDescription}</div>
+          <div>${teamName}</div>
+          <div>${teamLocation}</div>
         </div>
       </article>`;
    }
