@@ -57,7 +57,7 @@ function loadResults(response){
           <img src="${projectBanner}">
         </div>
         <div class="project-card__content">
-          <h2 class="project-card__title">${projectTitle}</h2>
+          <h2 class="project-card__title"><a href="">${projectTitle}</a></h2>
           <h3 class="project-card__subtitle">${projectSubtitle}</h3>
           <a href=">${projectUrl}">${projectUrl}</a>
           <div>${projectDescription}</div>
@@ -65,6 +65,7 @@ function loadResults(response){
           <div>${teamLocation}</div>
         </div>
       </article>`;
+      searchFilter()
    }
 }
 
@@ -78,6 +79,7 @@ function resetResults() {
   resultContainer.innerHTML = '';
 }
 
+
 // Check if new search term
 
 function checkSearchTerm (newSearchInput){
@@ -88,12 +90,42 @@ function checkSearchTerm (newSearchInput){
   }
 }
 
+
+// Search Filter
+function searchFilter() {
+  console.log('working');
+  // Declare variables
+  let filter, 
+      article, 
+      articleLink, 
+      articleContent;
+  
+  filter = searchInput.value.toUpperCase();
+  article = resultContainer.getElementsByTagName('article');
+  console.log('article is : ' + article);
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < article.length; i++) {
+    console.log('this is loopin' + article[i]);
+    articleLink = article[i].getElementsByTagName("a")[0];
+    console.log('article link is ' + articleLink);
+    articleContent = articleLink.textContent || articleLink.innerText;
+    console.log('article content is ' + articleContent);
+    if (articleContent.toUpperCase().indexOf(filter) > -1) {
+      article[i].style.display = "";
+    } else {
+      article[i].style.display = "none";
+    }
+  }
+}
+
+
 // Autorun testing if you don't want to render a search
-function autoRun(searchValue) {
+/*function autoRun(searchValue) {
   callThatAPI(searchValue);
 }
 
-autoRun('tufts');
+autoRun('tufts');*/
+
 
 // EVENT LISTENER
 
@@ -101,7 +133,9 @@ autoRun('tufts');
 searchInput.addEventListener('keyup', function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
-    searchButton.click();
+    searchButton.click(); 
+  } else {
+    searchFilter();
   }
 });
 
