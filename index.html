@@ -1,21 +1,52 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Tufts Interactive Design</title>
-  </head>
-  <body>
-    <div id="container"></div>
-
+<head>
+  <meta charset="UTF-8">
+  <title>Tufts Interactive Projects</title>
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="assets/css/tufts-interactive.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+</head>
+<body>
+  <header id="header" class="header header--full-screen">
+    <h1 class="header__logo">Tufts Interactive Projects</h1>
+    <section class="section section--search">
+      <form class="search">
+        <input id="searchInput" class="search__input" placeholder="Search Tufts Websites">
+        <button id="searchButton" class="search__button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+            <title>Search</title>
+            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </form>
+    </section>
+  </header>
+  <main class="main">
+    <section id="apiResults" class="section section--infinite-load">
+      <div id="project-results" class="project-results"></div>
+      <div id="projects" class="projects">
+        <!-- RESULTS GO HERE -->
+      </div>
+    </section>
+    <section id="loadMore" class="section section--load-more">
+      <button id="loadMoreButton" class="load-more">
+        Load More
+      </button>
+    </section>
+  </main>
+  
+    <!-- REACT ATTEMPT -->
+    <!--<div id="container"></div>-->
     <!-- Load React. -->
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <script src="https://unpkg.com/react@15/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <!--<script src="https://unpkg.com/react@15/dist/react.js"></script> -->
+    <!--<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> -->
 
     <!-- Load our React component. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js" ></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/babel" src="assets/js/app.js"></script>
-    
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js" ></script> -->
+    <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <!--<script type="text/babel" src="assets/js/app.js"></script>  -->
+
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
