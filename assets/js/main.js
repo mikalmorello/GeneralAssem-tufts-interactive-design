@@ -5,7 +5,8 @@ const xhr = new XMLHttpRequest(),
       searchInput = document.getElementById('searchInput'),
       searchButton = document.getElementById('searchButton'),
       resultContainer = document.getElementById('projects'), 
-      noResultsContainer = document.getElementById('noResults');
+      noResultsContainer = document.getElementById('noResults'),
+      articleLoad = document.getElementsByClassName('project-card__expand');
       
 let searchInputValue = '',
     searchCount = 0,
@@ -40,32 +41,35 @@ function handleError() {
 // Load Results
 
 function loadResults(response){
-  var hits = response;
-  for(let i = 0; i < hits.length; i++) { 
-    let projectTitle =  hits[i].title,
-        projectSubtitle =  hits[i].field_project_subtitle,
-        projectBanner =  hits[i].field_project_banner,
-        projectUrl =  hits[i].field_project_link,
-        projectDescription =  hits[i].field_project_description,
-        teamName = hits[i].title_1,
-        teamLocation = hits[i].field_team_location;
+  var projects = response;
+  for(let i = 0; i < projects.length; i++) { 
+    let project = projects[i];
     resultContainer.innerHTML += 
      `<article class="project-card slideInUp">
         <div class="project-card__media">
-          <img src="${projectBanner}">
+          <img src="${project.field_project_banner}">
         </div>
         <div class="project-card__content">
-          <h2 class="project-card__title"><a class="project-card__expand">${projectTitle}</a></h2>
-          <h3 class="project-card__subtitle">${projectSubtitle}</h3>
-          <a class="project-card__url" href=">${projectUrl}">${projectUrl}</a>
-          <div>${projectDescription}</div>
-          <div>${teamName}</div>
-          <div>${teamLocation}</div>
+          <h2 class="project-card__title"><a class="project-card__expand">${project.title}</a></h2>
+          <h3 class="project-card__subtitle">${project.field_project_subtitle}</h3>
+          <a class="project-card__url" href=">${project.field_project_link}">${project.field_project_link}</a>
+          <div>${project.field_project_description}</div>
+          <div>${project.title_1}</div>
+          <div>${project.field_team_location}</div>
         </div>
       </article>`;
-      searchFilter()
+      searchFilter();
+      projectLoadClick(projects);
    }
 }
+
+
+// Find Parent of Class
+function findParent(element, parentClass){
+  while ((element = element.parentElement) && !element.classList.contains(parentClass));
+  return element;
+}
+
 
 // Remove loader icon
 function hideLoader (){
@@ -90,6 +94,7 @@ function checkSearchTerm (newSearchInput){
 
 
 // Search Filter
+
 function searchFilter() {
   // Declare variables
   let filter, 
@@ -122,6 +127,17 @@ function searchFilter() {
   }
 }
 
+// Article Load In Overlay
+function projectLoadClick(projects){
+  for (let i = 0; i < articleLoad.length; i++) {
+    articleLoad[i].addEventListener('click', function(){
+      event.preventDefault();
+      console.log(articleLoad[i]);
+      let projectParent = findParent(articleLoad[i], 'project-card');
+      projectParent.classList.add('project-card--active');
+    });
+  }
+}
 
 // Autorun testing if you don't want to render a search
 /*function autoRun(searchValue) {
