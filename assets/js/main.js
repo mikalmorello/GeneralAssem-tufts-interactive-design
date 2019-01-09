@@ -4,7 +4,8 @@ const xhr = new XMLHttpRequest(),
       header = document.getElementById('header'),
       searchInput = document.getElementById('searchInput'),
       searchButton = document.getElementById('searchButton'),
-      resultContainer = document.getElementById('projects');
+      resultContainer = document.getElementById('projects'), 
+      noResultsContainer = document.getElementById('noResults');
       
 let searchInputValue = '',
     searchCount = 0,
@@ -33,15 +34,12 @@ function handleSuccess() {
 
 // API Error
 function handleError() {
-  console.log('oops');
   resetResults();
 }
 
 // Load Results
 
 function loadResults(response){
-  console.log(response);
-  console.log(response.length);
   var hits = response;
   for(let i = 0; i < hits.length; i++) { 
     let projectTitle =  hits[i].title,
@@ -93,7 +91,6 @@ function checkSearchTerm (newSearchInput){
 
 // Search Filter
 function searchFilter() {
-  console.log('working');
   // Declare variables
   let filter, 
       article, 
@@ -102,19 +99,30 @@ function searchFilter() {
   
   filter = searchInput.value.toUpperCase();
   article = resultContainer.getElementsByTagName('article');
-  console.log('article is : ' + article);
   // Loop through all list items, and hide those who don't match the search query
+  let articleMatch = 0;
   for (i = 0; i < article.length; i++) {
-    console.log('this is loopin' + article[i]);
+    console.log('original ' + articleMatch);
     articleLink = article[i].getElementsByTagName("a")[0];
-    console.log('article link is ' + articleLink);
     articleContent = articleLink.textContent || articleLink.innerText;
-    console.log('article content is ' + articleContent);
+    console.log(articleContent);
     if (articleContent.toUpperCase().indexOf(filter) > -1) {
       article[i].style.display = "";
+      articleMatch++;
+      console.log('do not show' + i)
     } else {
       article[i].style.display = "none";
+      console.log('show' + i)
     }
+    // If no matches
+    if (articleMatch === 0) {
+      noResultsContainer.classList.remove('section--hide');
+      console.log('show no results');
+    } else {
+      noResultsContainer.classList.add('section--hide');
+      console.log('hide no results');
+    }
+    console.log(articleMatch);
   }
 }
 

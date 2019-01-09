@@ -1,11 +1,12 @@
 /* EDAMAM */
 /*
-- EDAMAM
-- EDAMAM CARD
+- PROJECTS
+- PROJECT CARD
+- NO RESULTS
 */
 
 
-// EDAMAM
+// PROJECTS
 
 .projects {
   display: flex;
@@ -21,7 +22,7 @@
 }
 
 
-// EDAMAM CARD
+// PROJECT CARD
 
 .project-card {
   background: $white;
@@ -108,3 +109,12 @@
 	width: 0; 
   }
 }
+
+
+// NO RESULTS
+.no-results {
+  background: white;
+  padding: 4rem 10rem;
+}
+
+ 

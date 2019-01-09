@@ -62,5 +62,23 @@
   background-size: cover;
   display: flex;
   flex-direction: column;
-  //min-height: 80vh; 
+  min-height: 100%; 
+}
+
+// SECTION
+
+.section {
+  display: block;
+  margin: 0 auto;
+  &.section--hide {
+    display: none;
+  }
+}
+
+// SECTION NO RESULTS
+.section--no-results {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
 }
