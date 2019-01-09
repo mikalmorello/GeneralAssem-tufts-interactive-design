@@ -55,9 +55,9 @@ function loadResults(response){
           <img src="${projectBanner}">
         </div>
         <div class="project-card__content">
-          <h2 class="project-card__title"><a href="">${projectTitle}</a></h2>
+          <h2 class="project-card__title"><a class="project-card__expand">${projectTitle}</a></h2>
           <h3 class="project-card__subtitle">${projectSubtitle}</h3>
-          <a href=">${projectUrl}">${projectUrl}</a>
+          <a class="project-card__url" href=">${projectUrl}">${projectUrl}</a>
           <div>${projectDescription}</div>
           <div>${teamName}</div>
           <div>${teamLocation}</div>
@@ -102,25 +102,21 @@ function searchFilter() {
   // Loop through all list items, and hide those who don't match the search query
   let articleMatch = 0;
   for (i = 0; i < article.length; i++) {
-    console.log('original ' + articleMatch);
-    articleLink = article[i].getElementsByTagName("a")[0];
-    articleContent = articleLink.textContent || articleLink.innerText;
-    console.log(articleContent);
-    if (articleContent.toUpperCase().indexOf(filter) > -1) {
+    articleTitle = article[i].getElementsByClassName("project-card__title")[0].innerText;
+    console.log('article Title ' + articleTitle);
+    articleUrl = article[i].getElementsByClassName("project-card__url")[0].innerText;
+    console.log('article Url ' + articleUrl);
+    if ((articleTitle.toUpperCase().indexOf(filter) > -1) || (articleUrl.toUpperCase().indexOf(filter) > -1)) {
       article[i].style.display = "";
       articleMatch++;
-      console.log('do not show' + i)
     } else {
       article[i].style.display = "none";
-      console.log('show' + i)
     }
     // If no matches
     if (articleMatch === 0) {
       noResultsContainer.classList.remove('section--hide');
-      console.log('show no results');
     } else {
       noResultsContainer.classList.add('section--hide');
-      console.log('hide no results');
     }
     console.log(articleMatch);
   }
