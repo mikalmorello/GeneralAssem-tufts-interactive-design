@@ -16,6 +16,7 @@
   justify-content: center;
   flex-direction: column;
   min-height: 20vh; 
+  overflow: hidden;
   position:relative;
   transition: min-height .25s;  
   &:before {
@@ -51,7 +52,10 @@
     height: 100vh; 
     min-height: 100vh; 
   }
-  
+  &--hidden {
+    height: 0; 
+    min-height: 0;
+  }
 }
 
 // MAIN

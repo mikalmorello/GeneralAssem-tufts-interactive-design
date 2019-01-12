@@ -31,6 +31,7 @@
   font-family: sans-serif;
   margin: 0 1.5rem 2rem 1.5rem;
   max-width: 100%;
+  transition: all .75s ease;
   @include breakpoint($tablet) {
     margin: 0 0 2rem 0;
     width: 45%;
@@ -79,8 +80,11 @@
     padding: .25rem;
   }
   &--active {
-    position: fixed;
     height: 100%;
+    min-height: 100%;
+    //position: fixed;
+    position: absolute;
+    //top: 0;
     width: 100%;
     z-index: 10;
   }
@@ -124,3 +128,8 @@
 }
 
  
+// MENU
+.menu {
+  color: black;
+  z-index: 100;
+}

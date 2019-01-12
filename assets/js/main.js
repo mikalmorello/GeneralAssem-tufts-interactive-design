@@ -6,7 +6,8 @@ const xhr = new XMLHttpRequest(),
       searchButton = document.getElementById('searchButton'),
       resultContainer = document.getElementById('projects'), 
       noResultsContainer = document.getElementById('noResults'),
-      articleLoad = document.getElementsByClassName('project-card__expand');
+      articleLoad = document.getElementsByClassName('project-card__expand'),
+      menu = document.getElementsByClassName('menu')[0];
       
 let searchInputValue = '',
     searchCount = 0,
@@ -45,7 +46,7 @@ function loadResults(response){
   for(let i = 0; i < projects.length; i++) { 
     let project = projects[i];
     resultContainer.innerHTML += 
-     `<article class="project-card slideInUp">
+     `<article class="project-card">
         <div class="project-card__media">
           <img src="${project.field_project_banner}">
         </div>
@@ -135,8 +136,24 @@ function projectLoadClick(projects){
       console.log(articleLoad[i]);
       let projectParent = findParent(articleLoad[i], 'project-card');
       projectParent.classList.add('project-card--active');
+      header.classList.add('header--hidden');
+      closeProject();
     });
   }
+}
+
+
+// close Project
+
+function closeProject() {
+  menu.addEventListener('click', function(){
+    let activeProject = document.getElementsByClassName('project-card--active')[0];
+    if(activeProject){
+      activeProject.classList.remove('project-card--active');
+      header.classList.remove('header--hidden');
+    }
+    
+  });
 }
 
 // Autorun testing if you don't want to render a search
