@@ -7,6 +7,8 @@ const xhr = new XMLHttpRequest(),
       resultContainer = document.getElementById('projects'), 
       noResultsContainer = document.getElementById('noResults'),
       filterContainer = document.getElementById('apiResultsFilter'),
+      filterTeam = document.getElementsByClassName('projects-filter__team'),
+      filterPlatform = document.getElementsByClassName('projects-filter__platform'),
       countContainer = document.getElementById('apiResultsCount'),
       articleLoad = document.getElementsByClassName('project-card__expand'),
       menu = document.getElementsByClassName('menu')[0];
@@ -39,6 +41,7 @@ function handleSuccess() {
     banner.classList.remove('banner--full-screen');
   }
   projectFilterList(response);
+  projectFilterEvent(response);
 }
 
 // API Error
@@ -70,9 +73,9 @@ function loadResults(response){
             ${project.field_project_introduction}
           </div>
           <a class="project-card__url" href="${project.field_project_link}">${project.field_project_link_1}</a>
-          <!--<div class="project-card__team">
+          <div class="project-card__team">
             ${project.title_1}
-          </div>-->
+          </div>
         </div>
       </article>`;
       searchFilter();
@@ -121,7 +124,8 @@ function searchFilter() {
   let filter, 
       article, 
       articleLink, 
-      articleContent;
+      articleContent,
+      articleTeam;
   
   filter = searchInput.value.toUpperCase();
   article = resultContainer.getElementsByTagName('article');
@@ -232,15 +236,50 @@ function projectFilterList(projects){
   let platformListResults = '';
   // Loop throught unique items for teams
   for(let i = 0; i < teamListUnique.length; i++) {
-    teamListResults += `<li class="projects-filter__item">${teamListUnique[i]}</li>`;
+    teamListResults += `<li class="projects-filter__item"><a class="projects-filter__team">${teamListUnique[i]}</a></li>`;
   }
   // Loop throught unique items for platforms
   for(let i = 0; i < platformListUnique.length; i++) {
-    platformListResults += `<li class="projects-filter__item">${platformListUnique[i]}</li>`;
+    platformListResults += `<li class="projects-filter__item"><a class="projects-filter__platform">${platformListUnique[i]}</a></li>`;
   }
   projectFilter(projects, teamListResults, platformListResults);
 }
 
+
+// Project Filter Click
+
+function projectFilterEvent(projects){
+  // Create a click event for each Team
+  console.log(filterTeam);
+  for(let i = 0; i < filterTeam.length; i++) {
+    filterTeam[i].addEventListener('click', function(){
+      event.preventDefault();
+      let activeTeam = filterTeam[i].innerText;
+      console.log(activeTeam + 'clicked');
+      article = resultContainer.getElementsByTagName('article');
+      // Loop through articles
+      for (i = 0; i < article.length; i++) {
+        articleTeam = article[i].getElementsByClassName("project-card__team")[0].innerText;
+        // Loop through articles to see if team matches what was clicked
+        if (articleTeam == activeTeam) {
+          //article[i].style.display = "";
+          console.log('a match ' + articleTeam + ' ' + activeTeam);
+        } else {
+          article[i].style.display = "none";
+          console.log('not a match ' + articleTeam + ' ' + activeTeam);
+        }
+      }
+    });
+  }
+  // Create a click event for each Platform
+  console.log(filterPlatform);
+  for(let i = 0; i < filterPlatform.length; i++) {
+    filterPlatform[i].addEventListener('click', function(){
+      event.preventDefault();
+      console.log(filterPlatform[i] + 'clicked');
+    });
+  }
+}
 
 // Project Result Count
 
