@@ -48,7 +48,11 @@ function loadResults(response){
     resultContainer.innerHTML += 
      `<article class="project-card">
         <div class="project-card__media">
-          <a class="project-card__expand"><img src="${project.field_project_banner}"></a>
+          <a class="project-card__expand">
+            <div class="project-card__media-browser">
+              <img src="${project.field_project_banner}">
+            </div>
+          </a>
         </div>
         <div class="project-card__content">
           <h2 class="project-card__title">
@@ -57,10 +61,10 @@ function loadResults(response){
           <div class="project-card__introduction">
             ${project.field_project_introduction}
           </div>
-          <a class="project-card__url" href=">${project.field_project_link}">${project.field_project_link}</a>
-          <div class="project-card__team">
+          <a class="project-card__url" href="${project.field_project_link}">${project.field_project_link_1}</a>
+          <!--<div class="project-card__team">
             ${project.title_1}
-          </div>
+          </div>-->
         </div>
       </article>`;
       searchFilter();
