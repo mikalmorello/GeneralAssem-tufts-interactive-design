@@ -26,6 +26,7 @@
 
 .project-card {
   background: $white;
+  //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
@@ -37,7 +38,9 @@
     width: 45%;
   }
   &__media {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
     img {
+      display: block;
       min-width: 100%;
       max-width: 100%;
     }
@@ -46,35 +49,39 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    font-family: $lato;
+    font-weight: 700;
     height: 100%;
   }
   &__title {
-    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: 1.625rem;
+    letter-spacing: $letter-space-large;
+    margin-bottom: 0;
+    margin-top: .25rem;
+    order: 2;
   }
-  &__calories {
-    margin-bottom: 1rem;
-    
+  &__introduction {
+    font-weight: 300;
+    line-height: $line-height;
+    order: 3;
+    p {
+      margin: .5rem 0;
+    }
   }
-  &__labels {
-    flex-grow: 1;
-    margin-bottom: 1rem;
+  &__team {
+    color: $tufts-blue;
+    font-size: .85rem;
+    letter-spacing: $letter-space-small;
+    order: 1;
+    text-transform: uppercase;
   }
   &__url {
     align-self: flex-start;
-    background: $food-orange;
     border-radius: .25rem;
-    color: $white;
+    color: $tufts-blue;
     display: inline-block;
-    padding: .5rem;
-    margin-top: 1rem;
-    text-decoration: none;
-  }
-  &__label {
-    background: $light-gray;
-    border-radius: .25rem;
-    line-height: 2rem;
-    margin: .25rem;
-    padding: .25rem;
+    order: 4;
   }
   &--active {
     height: 100%;

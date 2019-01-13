@@ -2,7 +2,8 @@
 /*
 - SECTION
 - SECTION SEARCH
-- SECTION LOAD MORE
+- SECTION PROJECTS
+- SECTION INFINITE LOAD & LOAD MORE
 - SECTION VARIANTS
 */
 
@@ -67,13 +68,17 @@
   }
 }
 
-// SECTION INFINITE LOAD
+// SECTION PROJECTS
+
+.section--projects {
+  padding: 6rem;
+}
+
+
+// SECTION INFINITE LOAD & LOAD MORE
 
 .section--infinite-load {
 }
- 
-
-// SECTION LOAD MORE
 
 .section--load-more {
   align-self: flex-end;

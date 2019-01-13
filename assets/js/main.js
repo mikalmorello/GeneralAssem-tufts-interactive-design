@@ -48,15 +48,19 @@ function loadResults(response){
     resultContainer.innerHTML += 
      `<article class="project-card">
         <div class="project-card__media">
-          <img src="${project.field_project_banner}">
+          <a class="project-card__expand"><img src="${project.field_project_banner}"></a>
         </div>
         <div class="project-card__content">
-          <h2 class="project-card__title"><a class="project-card__expand">${project.title}</a></h2>
-          <h3 class="project-card__subtitle">${project.field_project_subtitle}</h3>
+          <h2 class="project-card__title">
+            <a class="project-card__expand">${project.title}</a>
+          </h2>
+          <div class="project-card__introduction">
+            ${project.field_project_introduction}
+          </div>
           <a class="project-card__url" href=">${project.field_project_link}">${project.field_project_link}</a>
-          <div>${project.field_project_description}</div>
-          <div>${project.title_1}</div>
-          <div>${project.field_team_location}</div>
+          <div class="project-card__team">
+            ${project.title_1}
+          </div>
         </div>
       </article>`;
       searchFilter();
@@ -130,10 +134,10 @@ function searchFilter() {
 
 // Article Load In Overlay
 function projectLoadClick(projects){
+  // Load Project on title and image click
   for (let i = 0; i < articleLoad.length; i++) {
     articleLoad[i].addEventListener('click', function(){
       event.preventDefault();
-      console.log(articleLoad[i]);
       let projectParent = findParent(articleLoad[i], 'project-card');
       projectParent.classList.add('project-card--active');
       banner.classList.add('banner--hidden');
