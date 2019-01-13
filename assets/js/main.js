@@ -135,10 +135,12 @@ function searchFilter() {
     articleTitle = article[i].getElementsByClassName("project-card__title")[0].innerText;
     articleUrl = article[i].getElementsByClassName("project-card__url")[0].innerText;
     if ((articleTitle.toUpperCase().indexOf(filter) > -1) || (articleUrl.toUpperCase().indexOf(filter) > -1)) {
-      article[i].style.display = "";
+      //article[i].style.display = "";
+      article[i].classList.remove('project-card--search-hide');
       articleMatch++;
     } else {
-      article[i].style.display = "none";
+      //article[i].style.display = "none";
+      article[i].classList.add('project-card--search-hide');
     }
     // If no matches
     if (articleMatch === 0) {
@@ -250,33 +252,29 @@ function projectFilterList(projects){
 
 function projectFilterEvent(projects){
   // Create a click event for each Team
-  console.log(filterTeam);
   for(let i = 0; i < filterTeam.length; i++) {
     filterTeam[i].addEventListener('click', function(){
       event.preventDefault();
-      let activeTeam = filterTeam[i].innerText;
-      console.log(activeTeam + 'clicked');
+      let activeTeam = filterTeam[i].innerText.toUpperCase();
       article = resultContainer.getElementsByTagName('article');
       // Loop through articles
       for (i = 0; i < article.length; i++) {
-        articleTeam = article[i].getElementsByClassName("project-card__team")[0].innerText;
+        articleTeam = article[i].getElementsByClassName("project-card__team")[0].innerText.toUpperCase();
         // Loop through articles to see if team matches what was clicked
-        if (articleTeam == activeTeam) {
+        if (articleTeam == activeTeam) { 
           //article[i].style.display = "";
-          console.log('a match ' + articleTeam + ' ' + activeTeam);
+          article[i].classList.remove('project-card--team-hide');
+          console.log('-' + articleTeam + '-' + activeTeam + '-');
         } else {
-          article[i].style.display = "none";
-          console.log('not a match ' + articleTeam + ' ' + activeTeam);
+          article[i].classList.add('project-card--team-hide');
         }
       }
     });
   }
   // Create a click event for each Platform
-  console.log(filterPlatform);
   for(let i = 0; i < filterPlatform.length; i++) {
     filterPlatform[i].addEventListener('click', function(){
       event.preventDefault();
-      console.log(filterPlatform[i] + 'clicked');
     });
   }
 }

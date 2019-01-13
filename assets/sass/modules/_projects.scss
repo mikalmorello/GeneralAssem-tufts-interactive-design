@@ -129,6 +129,15 @@
     width: 100%;
     z-index: 10;
   }
+  &--search-hide {
+    display: none;
+  }
+  &--team-hide {
+    display: none;
+  }
+  &--platform-hide {
+    display: none;
+  }
 }
 	
 .project-results {
