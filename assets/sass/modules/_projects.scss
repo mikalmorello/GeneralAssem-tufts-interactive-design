@@ -1,8 +1,10 @@
-/* EDAMAM */
+/* PROJECTS */
 /*
 - PROJECTS
 - PROJECT CARD
-- NO RESULTS
+- PROJECT NO RESULTS
+- PROJECT RESULTS COUNT
+- PROJECT FILTER
 */
 
 
@@ -23,6 +25,9 @@
     content: '';
     width: 45%;
   }
+  &.projects--active {
+    padding-top: 6rem;
+  }
 }
 
 
@@ -33,7 +38,7 @@
   //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  font-family: sans-serif;
+  font-family: $lato;
   margin: 0 1.5rem 2rem 1.5rem;
   max-width: 100%;
   transition: all .75s ease;
@@ -168,4 +173,41 @@
 .menu {
   color: black;
   z-index: 100;
+}
+
+
+// PROJECTS COUNT
+
+.projects-count {
+  color: $text-light;
+  font-family: $oswald;
+  position: relative;
+  z-index: 1;
+  &__container {
+    margin-top: -5rem;
+    //position: absolute;
+  }
+  &__number {
+    font-size: 6.5rem;
+  }
+  &.projects-count--active {
+    //padding-top: 6rem;
+  }
+}
+
+
+// PROJECTS FILTER
+
+.projects-filter {
+  font-family: $oswald;
+  &__container {
+  }
+  &__title {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: .04rem;
+    text-transform: uppercase;
+  }
+  &.projects-filter--active {
+  }
 }

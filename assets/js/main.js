@@ -6,6 +6,8 @@ const xhr = new XMLHttpRequest(),
       searchButton = document.getElementById('searchButton'),
       resultContainer = document.getElementById('projects'), 
       noResultsContainer = document.getElementById('noResults'),
+      filterContainer = document.getElementById('apiResultsFilter'),
+      countContainer = document.getElementById('apiResultsCount'),
       articleLoad = document.getElementsByClassName('project-card__expand'),
       menu = document.getElementsByClassName('menu')[0];
       
@@ -45,6 +47,7 @@ function loadResults(response){
   var projects = response;
   for(let i = 0; i < projects.length; i++) { 
     let project = projects[i];
+    let projectCount = projects.length;
     resultContainer.innerHTML += 
      `<article class="project-card">
         <div class="project-card__media">
@@ -69,6 +72,12 @@ function loadResults(response){
       </article>`;
       searchFilter();
       projectLoadClick(projects);
+      projectFilter(projects);
+      projectResultCount(projectCount);
+      resultContainer.classList.add('projects--active');
+      filterContainer.classList.add('projects-filter--active');
+      console.log('Project run');
+      countContainer.classList.add('projects-count--active'); 
    }
 }
 
@@ -117,9 +126,7 @@ function searchFilter() {
   let articleMatch = 0;
   for (i = 0; i < article.length; i++) {
     articleTitle = article[i].getElementsByClassName("project-card__title")[0].innerText;
-    console.log('article Title ' + articleTitle);
     articleUrl = article[i].getElementsByClassName("project-card__url")[0].innerText;
-    console.log('article Url ' + articleUrl);
     if ((articleTitle.toUpperCase().indexOf(filter) > -1) || (articleUrl.toUpperCase().indexOf(filter) > -1)) {
       article[i].style.display = "";
       articleMatch++;
@@ -132,8 +139,9 @@ function searchFilter() {
     } else {
       noResultsContainer.classList.add('section--hide');
     }
-    console.log(articleMatch);
   }
+  console.log('Article run');
+  projectResultCount(articleMatch);
 }
 
 // Article Load In Overlay
@@ -150,8 +158,7 @@ function projectLoadClick(projects){
   }
 }
 
-
-// close Project
+// Close Project
 
 function closeProject() {
   menu.addEventListener('click', function(){
@@ -164,6 +171,31 @@ function closeProject() {
   });
 }
 
+// Project Filter
+function projectFilter(projects){
+  // Load Project on title and image click
+  filterContainer.innerHTML =  
+  `
+    <div class="projects-filter__container">
+      <h2 class="projects-filter__title">
+        Filters
+      </h2>
+    </div>
+  `;
+}
+
+// Project Result Count
+function projectResultCount(projectCount){
+  countContainer.innerHTML =  
+  `
+    <div class="projects-count__container">
+      <span class="projects-count__number">${projectCount}</span> Results
+    </div>
+  `;
+  console.log('Project count is ' + projectCount);
+}
+ 
+ 
 // Autorun testing if you don't want to render a search
 /*function autoRun(searchValue) {
   callThatAPI(searchValue);
