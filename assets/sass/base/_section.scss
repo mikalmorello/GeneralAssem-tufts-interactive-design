@@ -7,6 +7,26 @@
 */
 
 
+
+// SECTION
+
+.section {
+  display: block;
+  margin: 0 auto;
+  &.section--hide {
+    display: none;
+  }
+}
+
+// SECTION NO RESULTS
+.section--no-results {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+
 // SECTION
 
 .section {
@@ -18,7 +38,6 @@
 // SECTION SEARCH
 
 .section--search {
-  background: pink; 
   display: flex;
   justify-content: center;
   margin: 1.5rem auto;

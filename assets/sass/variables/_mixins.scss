@@ -1,6 +1,7 @@
 /* MIXINS */
 /*
 - CLEAR
+- CONTAINER
 */
 
 // CLEAR
@@ -21,4 +22,26 @@
   &{
     *zoom: 1;
   }
+}
+
+// CONTAINER LARGE
+
+@mixin container-large {
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  @include breakpoint($desktop-max) {
+    max-width: $desktop-max;
+    padding: 0;
+  }
+}
+
+
+// CONTAINER SMALL
+
+@mixin container-small {
+  max-width: $desktop;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  padding: 0 1.25rem;
 }

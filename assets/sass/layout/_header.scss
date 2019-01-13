@@ -1,0 +1,81 @@
+/* HEADER REGION */
+/*
+- HEADER
+- HEADER STATES
+*/
+
+
+// HEADER
+
+.header { 
+  padding: 1rem 0; 
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  //.header__container 
+  &__container {
+    @include container-large();
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+  //.header__logo
+  &__logo {
+    display: block;
+    height: 2rem;
+    width: 6rem;
+    z-index: $z-index-header-links; 
+  }
+  //.header__site-name
+  &__site-name {
+    display: block;
+    height: 2rem;
+    padding-left: .5rem;
+    width: 7.25rem;
+    z-index: $z-index-header-links;
+  }
+  //.header__menus
+  &__actions {
+    //background: yellow;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    z-index: $z-index-header-links;
+  }
+  //.header__menu
+  &__menu {
+    fill: $white;
+    margin-left: .5rem;
+    width: 1.5rem;
+  }
+}
+
+// HEADER STATES
+
+.header--light {
+  .header__logo {
+    fill: $white;
+  }
+  .header__site-name {
+    color: $white;
+  }
+}
+
+// Initiates when the page is scrolled, but remains hidden
+.header--scroll {
+  background: teal;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  opacity: 0;
+  transform: translate(0, -200px);
+  visibility: hidden;
+}
+
+// Initiates when the page is scrolled past a certain point, revealing the navigation
+.header--sticky {
+  opacity:1;
+  transition: all 0.3s ease;
+  transform: translate(0, 0);
+  visibility: visible; 
+}
