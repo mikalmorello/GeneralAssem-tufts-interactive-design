@@ -181,7 +181,9 @@
 .projects-count {
   color: $text-light;
   font-family: $oswald;
+  opacity: 0;
   position: relative;
+  transition: all .75s ease;
   z-index: 1;
   &__container {
     margin-top: -5rem;
@@ -191,6 +193,7 @@
     font-size: 6.5rem;
   }
   &.projects-count--active {
+    opacity: 1;
     //padding-top: 6rem;
   }
 }
@@ -200,12 +203,38 @@
 
 .projects-filter {
   font-family: $oswald;
-  &__container {
-  }
+  letter-spacing: .04rem;
   &__title {
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: .04rem;
+    margin-top: 2.75rem;
+    position: relative;
+    text-transform: uppercase;
+    &:after {
+      content:''; 
+      background:gray;
+      height:1px; 
+      left: 0;
+      position:absolute; 
+      top:-1rem;
+      width:9rem;
+    }
+  }
+  &__subtitle {
+    font-size: .85rem;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 1.5rem;
+  }
+  &__list {
+    list-style: none;
+    margin-top: .5rem;
+    padding-left: 0;
+  }
+  &__item {
+    font-weight: 400;
+    padding-bottom: .25rem;
     text-transform: uppercase;
   }
   &.projects-filter--active {

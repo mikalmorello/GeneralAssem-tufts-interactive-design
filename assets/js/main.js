@@ -186,14 +186,14 @@ function projectFilter(projects, teamListResults, platformListResults){
         Filters
       </h2>
       <div id="apiResultsFilterTeam">
-        <h3>Development Team</h3>
-        <ul>
+        <h3 class="projects-filter__subtitle">Development Team</h3>
+        <ul class="projects-filter__list">
           ${teamListResults}  
         </ul?>
       </div>
       <div id="apiResultsFilterPlatform">
-        <h3>Platform</h3>
-        <ul>
+        <h3 class="projects-filter__subtitle">Platform</h3>
+        <ul class="projects-filter__list">
           ${platformListResults}  
         </ul>
       </div>
@@ -232,11 +232,11 @@ function projectFilterList(projects){
   let platformListResults = '';
   // Loop throught unique items for teams
   for(let i = 0; i < teamListUnique.length; i++) {
-    teamListResults += `<li>${teamListUnique[i]}</li>`;
+    teamListResults += `<li class="projects-filter__item">${teamListUnique[i]}</li>`;
   }
   // Loop throught unique items for platforms
   for(let i = 0; i < platformListUnique.length; i++) {
-    platformListResults += `<li>${platformListUnique[i]}</li>`;
+    platformListResults += `<li class="projects-filter__item">${platformListUnique[i]}</li>`;
   }
   projectFilter(projects, teamListResults, platformListResults);
 }
@@ -245,10 +245,14 @@ function projectFilterList(projects){
 // Project Result Count
 
 function projectResultCount(projectCount){
+  let resultText = 'Results'; 
+  if(projectCount === 1){
+    resultText = 'Result';
+  }
   countContainer.innerHTML =  
   `
     <div class="projects-count__container">
-      <span class="projects-count__number">${projectCount}</span> Results
+      <span class="projects-count__number">${projectCount}</span> ${resultText}
     </div>
   `;
 }
