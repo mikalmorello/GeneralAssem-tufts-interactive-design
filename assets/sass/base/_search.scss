@@ -2,6 +2,7 @@
 /*
 - SEARCH
 - lOAD MORE
+- ANIMATION
 */
 
 // SEARCH
@@ -11,31 +12,43 @@
   justify-content: center;
   flex-direction: row;
   margin: 0 1.5rem; 
-  max-width: 100vw;
   position: relative;
+  width: 100%;
   z-index: 2;
-  @include breakpoint($tablet) {
-    margin: 0 auto; 
-    width: 65vw;
-  }
-  @include breakpoint($desktop) {
-    width: 40vw;
-  }
   //.search__input
   &__input {
     border: none;
-    font-size: 1.5rem;
-    padding: 1rem 1.5rem;
+    font-size: 2.5rem;
+    font-family: $oswald;
+    font-weight: 300;
+    padding: .5rem 1.5rem .5rem 2rem;
     margin: 1.5rem 0;
+    text-transform: uppercase;
     width: 100%;
     &::placeholder {
-      font-style: italic;
+      //font-style: italic;
     }
+  }
+  &__cursor {
+    animation-name: blink;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+    background-color: gray;
+    height: calc(100% - 4rem);
+    left: 1.5rem;
+    opacity: 1;
+    position: absolute;
+    top: 2rem;
+	width: 1px;
+  }
+  &__input:focus + &__cursor {
+	display: none;
   }
   //.search__button 
   &__button {
     border: none;
     background: $white;
+    display: flex;
     font-size: 2rem;
     font-weight: 300;
     min-width: 5rem;
@@ -53,6 +66,7 @@
       color: $food-orange;
     }
   }
+
 }
 
 
@@ -70,4 +84,12 @@
   &--show {
     display: inline-block;
   }
+}
+
+
+// ANIMATION
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }

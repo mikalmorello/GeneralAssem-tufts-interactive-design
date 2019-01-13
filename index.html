@@ -4,24 +4,35 @@
   <title>Tufts Interactive Projects</title>
   <link rel="stylesheet" href="assets/css/animate.css">
   <link rel="stylesheet" href="assets/css/tufts-interactive.css">
-  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Oswald:300,500,700" rel="stylesheet">
 </head>
 <body>
-  <div class="menu">Close</div>
-  <header id="header" class="header header--full-screen">
-    <h1 class="header__logo">Tufts Interactive Projects</h1>
-    <section class="section section--search">
-      <form class="search">
-        <input id="searchInput" class="search__input" placeholder="Search Tufts Websites">
-        <button id="searchButton" class="search__button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-            <title>Search</title>
-            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </button>
-      </form>
-    </section>
+  <div class="menu" style="display: none;">Close</div>
+  <!-- HEADER -->
+  <header id="header">
+    
   </header>
+  <!-- BANNER -->
+  <section id="banner" class="banner banner--full-screen">
+    <section class="section section--search">
+      <div class="section__header">
+        <h1 class="section__header-title">Search Tufts</h1>
+      </div>
+      <div class="section__form">
+        <form class="search">
+          <input id="searchInput" class="search__input" placeholder="Websites">
+          <div class="search__cursor"></div>
+          <button id="searchButton" class="search__button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+              <title>Search</title>
+              <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+  </section>
+  <!-- MAIN -->
   <main class="main">
     <section id="apiResults" class="section section--infinite-load">
       <div id="projects" class="projects">
@@ -32,6 +43,9 @@
       <div class="no-results">No Results</div>
     </section>
   </main>
+  <!-- FOOTER -->
+  <footer>
+  </footer>
   
     <!-- REACT ATTEMPT -->
     <!--<div id="container"></div>-->

@@ -1,7 +1,7 @@
 // VARIABLES
 const xhr = new XMLHttpRequest(),
       baseUrl = 'http://dev-tufts-interactive-design.pantheonsite.io/api/projects?_format=json',
-      header = document.getElementById('header'),
+      banner = document.getElementById('banner'),
       searchInput = document.getElementById('searchInput'),
       searchButton = document.getElementById('searchButton'),
       resultContainer = document.getElementById('projects'), 
@@ -30,7 +30,7 @@ function handleSuccess() {
   var response = JSON.parse(xhr.responseText);
   loadResults(response);
   if (searchCount === 1) {
-    header.classList.remove('header--full-screen');
+    banner.classList.remove('banner--full-screen');
   }
 }
 
@@ -136,7 +136,7 @@ function projectLoadClick(projects){
       console.log(articleLoad[i]);
       let projectParent = findParent(articleLoad[i], 'project-card');
       projectParent.classList.add('project-card--active');
-      header.classList.add('header--hidden');
+      banner.classList.add('banner--hidden');
       closeProject();
     });
   }
@@ -150,7 +150,7 @@ function closeProject() {
     let activeProject = document.getElementsByClassName('project-card--active')[0];
     if(activeProject){
       activeProject.classList.remove('project-card--active');
-      header.classList.remove('header--hidden');
+      banner.classList.remove('banner--hidden');
     }
     
   });

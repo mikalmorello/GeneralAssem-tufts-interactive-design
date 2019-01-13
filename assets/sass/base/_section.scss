@@ -18,14 +18,39 @@
 // SECTION SEARCH
 
 .section--search {
+  background: pink; 
+  display: flex;
+  justify-content: center;
   margin: 1.5rem auto;
-  z-index: 2;
+  max-width: 75rem;
+  z-index: 2;  
+  .section__header {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    width: 33.33%;
+  }
+  .section__header-title {
+    color: $text-dark;
+    font-family: $oswald; 
+    font-weight: 500;
+    font-size: 3.5rem;
+    letter-spacing: $letter-space-large;
+    line-height: 1.25em;
+    padding-right: 1rem;
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .section__form { 
+    display: flex;
+    justify-content: flex-start;
+    width: 66.66%;
+  }
 }
 
 // SECTION INFINITE LOAD
 
 .section--infinite-load {
-  //padding: 1rem 0 0 0;
 }
  
 
@@ -35,6 +60,6 @@
   align-self: flex-end;
   display: flex;
   margin: 0 auto;
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 2rem 2rem 2rem; 
   overflow: hidden;
 }
