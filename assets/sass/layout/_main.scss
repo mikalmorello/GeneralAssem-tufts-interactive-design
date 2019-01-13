@@ -1,46 +1,16 @@
-/* BANNER REGION */
+/* MAIN REGION */
 /*
-- BANNER
+- MAIN
 */
 
 
-// BANNER
+// MAIN
 
-// BANNER
-
-.banner {
-  background-image: url(../images/header.jpg);
+.main {
+  background: $white;
   background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
-  color: $white;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  min-height: 20vh; 
-  overflow: hidden;
-  padding: 2.5rem;
-  position:relative;
-  transition: min-height .25s;  
-  &:before {
-    background: $background-gray;
-    bottom: -10%;
-    content: " ";
-    height: 150%;
-    position: absolute;
-    left: -16.66%;
-    right: 0;
-    transform: rotate(20deg);
-    top: -40%;
-    width: 50%;
-    z-index: 1;
-  }
-  &--full-screen {
-    height: calc(100vh - 5rem);
-    min-height: calc(100vh - 5rem);
-  }
-  &--hidden {
-    height: 0; 
-    min-height: 0;
-  }
+  min-height: 100%; 
 }
