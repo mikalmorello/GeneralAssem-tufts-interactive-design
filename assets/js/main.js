@@ -352,9 +352,9 @@ function filterButtonsAdd(element) {
   activeFilterContainer.innerHTML = '';
   filterButtonListUnique.forEach(function(filterButton) {
     console.log('thing is ' + filterButton);
-     activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}</button>`;
+     activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}<img class="active-filters__img" src="assets/images/close.svg"></button>`; 
   });
-}
+} 
  
 // Autorun testing if you don't want to render a search
 /*function autoRun(searchValue) {

@@ -273,9 +273,21 @@
   padding-top: 1rem;
   width: 93%;
   &__button {
+    background: white;
     border-radius: .9rem;
+    font-family: lato;
     margin-right: 1rem;
     padding: .5rem 1rem;
+    text-transform: uppercase;
+    transition: all .75s ease;
+    &:hover {
+      background: $tufts-blue;
+      color: white;
+    }
+  }
+  &__img {
+    padding-left: .5rem;
+    width: .5rem;
   }
   &.active-filters--active {
     min-height: 6rem;
