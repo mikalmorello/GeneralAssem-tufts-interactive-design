@@ -352,7 +352,7 @@ function filterButtonsAdd(element) {
   activeFilterContainer.innerHTML = '';
   filterButtonListUnique.forEach(function(filterButton) {
     console.log('thing is ' + filterButton);
-     activeFilterContainer.innerHTML += `<button id="${filterButton}">${filterButton}</button>`;
+     activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}</button>`;
   });
 }
  

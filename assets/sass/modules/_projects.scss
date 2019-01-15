@@ -266,6 +266,17 @@
 // PROJECT ACTIVE FILTERS
 
 .active-filters {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  margin: 0 auto;
+  padding-top: 1rem;
+  width: 93%;
+  &__button {
+    border-radius: .9rem;
+    margin-right: 1rem;
+    padding: .5rem 1rem;
+  }
   &.active-filters--active {
     min-height: 6rem;
   }
