@@ -120,6 +120,9 @@
     display: inline-block;
     order: 4;
   }
+  &__platform {
+    display: none;
+  }
   &--active {
     height: 100%;
     min-height: 100%;
@@ -245,6 +248,12 @@
     font-weight: 400;
     padding-bottom: .25rem;
     text-transform: uppercase;
+  }
+  &__team--active {
+    font-weight: 700;
+  }
+  &__platform--active {
+    font-weight: 700;
   }
   &.projects-filter--active {
   }

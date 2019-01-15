@@ -19,7 +19,9 @@ let searchInputValue = '',
     teamList = [], 
     teamListUnique = [],
     platformList = [], 
-    platformListUnique = [];
+    platformListUnique = [],
+    activeTeam = '', 
+    activePlatform = '';
 
 
 // FUNCTIONS
@@ -76,6 +78,7 @@ function loadResults(response){
           <div class="project-card__team">
             ${project.title_1}
           </div>
+          <div class="project-card__platform">${project.field_project_platform}</div>
         </div>
       </article>`;
       searchFilter();
@@ -249,34 +252,54 @@ function projectFilterList(projects){
 
 
 // Project Filter Click
-
+// Create a click event for each Team
 function projectFilterEvent(projects){
   // Create a click event for each Team
-  for(let i = 0; i < filterTeam.length; i++) {
-    filterTeam[i].addEventListener('click', function(){
+  Array.prototype.forEach.call(filterTeam, function(element) {
+    //element.classList.remove('projects-filter__team--active');
+    element.addEventListener('click', function(){
       event.preventDefault();
-      let activeTeam = filterTeam[i].innerText.toUpperCase();
+      element.classList.add('projects-filter__team--active');
+      console.log(element);
+      activeTeam = element.innerText.toUpperCase();
       article = resultContainer.getElementsByTagName('article');
       // Loop through articles
       for (i = 0; i < article.length; i++) {
+        // Reset
+        article[i].classList.remove('project-card--team-hide');
         articleTeam = article[i].getElementsByClassName("project-card__team")[0].innerText.toUpperCase();
         // Loop through articles to see if team matches what was clicked
         if (articleTeam == activeTeam) { 
-          //article[i].style.display = "";
           article[i].classList.remove('project-card--team-hide');
-          console.log('-' + articleTeam + '-' + activeTeam + '-');
         } else {
           article[i].classList.add('project-card--team-hide');
         }
       }
     });
-  }
+  });
   // Create a click event for each Platform
-  for(let i = 0; i < filterPlatform.length; i++) {
-    filterPlatform[i].addEventListener('click', function(){
+  Array.prototype.forEach.call(filterPlatform, function(element) {
+    //element.classList.remove('projects-filter__platform--active');
+    element.addEventListener('click', function(){
       event.preventDefault();
+      
+      element.classList.add('projects-filter__platform--active');
+      console.log(element);
+      activePlatform = element.innerText.toUpperCase();
+      article = resultContainer.getElementsByTagName('article');
+      for (i = 0; i < article.length; i++) {
+        // Reset
+        article[i].classList.remove('project-card--platform-hide');
+        articlePlatform = article[i].getElementsByClassName("project-card__platform")[0].innerText.toUpperCase();
+        // Loop through articles to see if team matches what was clicked
+        if (articlePlatform == activePlatform) { 
+          article[i].classList.remove('project-card--platform-hide');
+        } else {
+          article[i].classList.add('project-card--platform-hide');
+        } 
+      }
     });
-  }
+  });
 }
 
 // Project Result Count
