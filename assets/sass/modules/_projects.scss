@@ -5,6 +5,7 @@
 - PROJECT NO RESULTS
 - PROJECT RESULTS COUNT
 - PROJECT FILTER
+- PROJECT ACTIVE FILTERS
 */
 
 
@@ -26,7 +27,7 @@
     width: 45%;
   }
   &.projects--active {
-    padding-top: 6rem;
+    //padding-top: 6rem;
   }
 }
 
@@ -177,7 +178,10 @@
 // NO RESULTS
 .no-results {
   background: white;
-  padding: 4rem 10rem;
+  font-family: $oswald;
+  font-size: 3rem;
+  padding: 4rem 10rem; 
+  
 }
 
  
@@ -256,5 +260,13 @@
     font-weight: 700;
   }
   &.projects-filter--active {
+  }
+}
+
+// PROJECT ACTIVE FILTERS
+
+.active-filters {
+  &.active-filters--active {
+    min-height: 6rem;
   }
 }

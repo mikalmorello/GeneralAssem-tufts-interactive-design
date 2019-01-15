@@ -11,7 +11,8 @@ const xhr = new XMLHttpRequest(),
       filterPlatform = document.getElementsByClassName('projects-filter__platform'),
       countContainer = document.getElementById('apiResultsCount'),
       articleLoad = document.getElementsByClassName('project-card__expand'),
-      menu = document.getElementsByClassName('menu')[0];
+      menu = document.getElementsByClassName('menu')[0],
+      activeFilterContainer = document.getElementById('activeFilters');
       
 let searchInputValue = '',
     searchCount = 0,
@@ -21,7 +22,9 @@ let searchInputValue = '',
     platformList = [], 
     platformListUnique = [],
     activeTeam = '', 
-    activePlatform = '';
+    activePlatform = '',
+    filterButtonList = [],
+    filterButtonListUnique = [];
 
 
 // FUNCTIONS
@@ -87,6 +90,7 @@ function loadResults(response){
       resultContainer.classList.add('projects--active');
       filterContainer.classList.add('projects-filter--active');
       countContainer.classList.add('projects-count--active'); 
+      activeFilterContainer.classList.add('active-filters--active'); 
    }
 }
 
@@ -266,7 +270,6 @@ function projectFilterEvent(projects){
       });
       // Add active class
       element.classList.add('projects-filter__team--active');
-      console.log(element);
       activeTeam = element.innerText.toUpperCase();
       article = resultContainer.getElementsByTagName('article');
       // Loop through articles
@@ -281,6 +284,8 @@ function projectFilterEvent(projects){
           article[i].classList.add('project-card--team-hide');
         }
       }
+      // Add / Remove filter buttons
+      filterButtonsAdd(element);
     });
   });
   // Create a click event for each Platform
@@ -295,7 +300,6 @@ function projectFilterEvent(projects){
       });
       // Add active class
       element.classList.add('projects-filter__platform--active');
-      console.log(element);
       activePlatform = element.innerText.toUpperCase();
       article = resultContainer.getElementsByTagName('article');
       for (i = 0; i < article.length; i++) {
@@ -309,8 +313,11 @@ function projectFilterEvent(projects){
           article[i].classList.add('project-card--platform-hide');
         } 
       }
+      // Add / Remove filter buttons
+      filterButtonsAdd(element);
     });
   });
+  
 }
 
 // Project Result Count
@@ -327,7 +334,27 @@ function projectResultCount(projectCount){
     </div>
   `;
 }
- 
+
+
+// Active Filter Labels
+function filterButtonsAdd(element) {
+  console.log('filter buttons');
+  /*Array.prototype.forEach.call(filterTeam, function(element) {
+    if(element.)
+  }*/
+  if(element.classList.contains('projects-filter__platform--active')){
+    filterButtonList.push('platform');
+  } else if(element.classList.contains('projects-filter__team--active')){
+    filterButtonList.push('team');
+  } 
+  filterButtonListUnique = filterButtonList.unique();
+  console.log(filterButtonListUnique);
+  activeFilterContainer.innerHTML = '';
+  filterButtonListUnique.forEach(function(filterButton) {
+    console.log('thing is ' + filterButton);
+     activeFilterContainer.innerHTML += `<button id="${filterButton}">${filterButton}</button>`;
+  });
+}
  
 // Autorun testing if you don't want to render a search
 /*function autoRun(searchValue) {
