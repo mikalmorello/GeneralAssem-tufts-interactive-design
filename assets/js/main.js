@@ -196,13 +196,13 @@ function projectFilter(projects, teamListResults, platformListResults){
       </h2>
       <div id="apiResultsFilterTeam">
         <h3 class="projects-filter__subtitle">Development Team</h3>
-        <ul class="projects-filter__list">
+        <ul id="team" class="projects-filter__list ">
           ${teamListResults}  
         </ul?>
       </div>
       <div id="apiResultsFilterPlatform">
         <h3 class="projects-filter__subtitle">Platform</h3>
-        <ul class="projects-filter__list">
+        <ul id="platform" class="projects-filter__list">
           ${platformListResults}  
         </ul>
       </div>
@@ -259,6 +259,12 @@ function projectFilterEvent(projects){
     //element.classList.remove('projects-filter__team--active');
     element.addEventListener('click', function(){
       event.preventDefault();
+      // Remove classes from siblings
+      let parent = document.getElementById('team');
+      parent.querySelectorAll( ".projects-filter__team" ).forEach(function(element) {
+        element.classList.remove('projects-filter__team--active');
+      });
+      // Add active class
       element.classList.add('projects-filter__team--active');
       console.log(element);
       activeTeam = element.innerText.toUpperCase();
@@ -282,7 +288,12 @@ function projectFilterEvent(projects){
     //element.classList.remove('projects-filter__platform--active');
     element.addEventListener('click', function(){
       event.preventDefault();
-      
+      // Remove classes from siblings
+      let parent = document.getElementById('platform');
+      parent.querySelectorAll( ".projects-filter__platform" ).forEach(function(element) {
+        element.classList.remove('projects-filter__platform--active');
+      });
+      // Add active class
       element.classList.add('projects-filter__platform--active');
       console.log(element);
       activePlatform = element.innerText.toUpperCase();
