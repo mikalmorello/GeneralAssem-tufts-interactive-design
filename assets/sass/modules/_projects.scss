@@ -34,11 +34,107 @@
 
 // PROJECT
 .project {
-  margin-top: -200px;
+  display: flex;
+  flex-direction: column;
+  max-width: 65rem;
+  margin: -40vh auto 0 auto;
   position: relative;
   z-index: 100;
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+  }
+  &__title {
+    font-family: $oswald;
+    font-size: 4.5rem;
+    font-weight: 400;
+    margin-bottom: .5rem;
+    text-transform: uppercase;
+  }
+  &__url {
+    border: 1px solid $light-gray;
+    color: $tufts-blue;
+    font-family: $lato;
+    font-weight: bold;
+    letter-spacing: .15rem;
+    margin-bottom: 1.75rem;
+    padding: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  &__media {
+    img {
+      border-top: 1px solid $border-gray;
+      display: block;
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
+  &__media-browser {
+    @include browser;
+    box-shadow: 0px 0px 44px 0px rgba(0,0,0,0.64);
+  }
+  &__content {
+    display: flex;
+    font-family: $lato;
+  }
+  &__introduction {
+    display: flex;
+    justify-content: center;
+    margin: 4.5rem auto;
+    max-width: 80%;
+    text-align: center;
+  }
+  &__introduction-text {
+    font-family: $lato;
+    font-size: 2rem;
+  }
+  &__main {
+    font-family: $lato;
+    order: 2;
+    width: 70%;
+  }
+  &__body {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    padding: 0 1rem;
+    p:first-child {
+      padding-top: 0;
+    }
+  }
+  &__sidebar {
+    font-family: $oswald;
+    order: 1;
+    width: 30%;
+    &:after {
+      @include border-line;
+      top: -1rem;
+    }
+  }
+  &__subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: .04rem;
+    margin-top: 2.75rem;
+    position: relative;
+    text-transform: uppercase;
+  }
+  &__item {
+    font-weight: 400;
+    padding-bottom: .25rem;
+    text-transform: uppercase;
+  }
+  &__team {
+    
+  }
+  &__platform {
+    
+  }
   &--hidden {
     height: 0;
+    margin: 0;
     overflow: hidden;
   }
 }
@@ -68,24 +164,7 @@
     }
   }
   &__media-browser {
-    border: 1px solid $border-gray;
-    border-top-left-radius: .25em;
-    border-top-right-radius: .25em;
-    &:hover {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
-      cursor:pointer;
-    }
-    &:before {
-      color: $border-gray;
-      content: "\2022\2022\2022";
-      display: block;
-      font-size: .625rem;
-      line-height: 1.25rem;
-      letter-spacing: .2em;
-      padding-left: .625rem;
-
-      
-    }
+    @include browser;
   }
   &__content {
     padding: 1rem;
@@ -238,13 +317,7 @@
     position: relative;
     text-transform: uppercase;
     &:after {
-      content:''; 
-      background:gray;
-      height:1px; 
-      left: 0;
-      position:absolute; 
-      top:-1rem;
-      width:9rem;
+      @include border-line;
     }
   }
   &__subtitle {

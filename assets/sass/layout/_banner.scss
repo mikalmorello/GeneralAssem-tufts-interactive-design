@@ -18,7 +18,7 @@
   overflow: hidden;
   padding: 2.5rem;
   position:relative;
-  transition: min-height .5s ease-out;  
+  transition: min-height .5s ease-out; 
   &:before {
     background: $background-gray;
     bottom: -10%;
@@ -29,6 +29,7 @@
     right: 0;
     transform: rotate(20deg);
     top: -40%;
+    transition: all .75s ease;
     width: 50%;
     //z-index: 1;
   }

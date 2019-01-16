@@ -5,6 +5,7 @@ const xhr = new XMLHttpRequest(),
       banner = document.getElementById('banner'),
       aside = document.getElementById('aside'),
       content = document.getElementById('content'),
+      activeProject =  document.getElementById('activeProject'),
       searchInput = document.getElementById('searchInput'),
       searchButton = document.getElementById('searchButton'),
       searchContainer = document.getElementById('searchContainer'),
@@ -62,6 +63,7 @@ function handleError() {
 
 function loadResults(response){
   var projects = response;
+  console.log(projects);
   for(let i = 0; i < projects.length; i++) { 
     let project = projects[i];
     let projectCount = projects.length;
@@ -186,7 +188,50 @@ function projectLoadClick(projects){
 
 // Load Project
 function loadProject(project, [i]){
+  console.log([i-1]);
   console.log(project[i]);
+  project = project[i-1];
+  activeProject.classList.remove('project--hidden');
+  activeProject.innerHTML = 
+  `
+    <article class="project">
+      <section class="project__header">
+        <h2 class="project__title">${project.title}</h2>
+        <a class="project__url" href="${project.field_project_link}">${project.field_project_link_1}</a>
+        <div class="project__media">
+          <div class="project__media-browser">
+            <img src="${project.field_project_banner}">
+          </div>
+        </div>
+      </section>
+      <section class="project__introduction">
+        <div class="project__introduction-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ullamcorper orci dolor, nec tristique mauris suscipit in. Quisque pharetra tellus massa, vitae volutpat nunc consectetur ut.
+        </div>
+      </section>
+      <section class="project__content">
+        <div class="project__main">
+          <div class="project__body">
+            ${project.field_project_introduction}
+          </div>
+        </div>
+        <div class="project__sidebar">
+          <div class="project__team">
+            <div class="project_subtitle">Project Team:</div>
+            <div class="project_item">
+              ${project.title_1}
+            </div>
+          </div>
+          <div class="project__platform">
+            <div class="project_subtitle">Project Platform:</div>
+            <div class="project_item">
+              ${project.field_project_platform}
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  `;
   
 }
 
