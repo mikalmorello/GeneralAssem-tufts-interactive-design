@@ -16,8 +16,8 @@ const xhr = new XMLHttpRequest(),
       filterPlatform = document.getElementsByClassName('projects-filter__platform'),
       countContainer = document.getElementById('apiResultsCount'),
       articleLoad = document.getElementsByClassName('project-card__expand'),
-      menu = document.getElementsByClassName('menu')[0],
       activeFilterContainer = document.getElementById('activeFilters'),
+      menuButton = document.getElementById('menuButton');
       menuIcon = document.getElementById('menuIcon');
       
 let searchInputValue = '',
@@ -182,8 +182,8 @@ function projectLoadClick(projects){
       searchContainer.classList.add('fadeOut');
       banner.classList.add('banner--full-screen');
       menuIcon.classList.add('is-active');
+      activeProject.classList.remove('slideOutDown');
       loadProject(projects, projectParent);
-      closeProject();
     });
   }
 }
@@ -233,22 +233,20 @@ function loadProject(project, projectParent){
       </section>
     </article>
   `;
-  
+   closeProject();
 }
 
 // Close Project
 
 function closeProject() {
-  menu.addEventListener('click', function(){
-    let activeProject = document.getElementsByClassName('project-card--active')[0];
-    if(activeProject){
-      activeProject.classList.remove('project-card--active');
-      //banner.classList.remove('banner--hidden');
-      //aside.classList.remove('aside--hidden');
-      //content.classList.remove('content--active-project');
-      main
-    }
-    
+  menuButton.addEventListener('click', function(){
+    activeProject.classList.add('slideOutDown');
+    activeProject.classList.add('project--hidden');
+    main.classList.remove('slideOutDown', 'main--hidden');
+    main.classList.add('slideInUp');
+    searchContainer.classList.remove('fadeOut');
+    banner.classList.remove('banner--full-screen');
+    menuIcon.classList.remove('is-active');
   });
 }
 
