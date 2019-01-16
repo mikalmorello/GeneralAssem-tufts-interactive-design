@@ -68,7 +68,7 @@ function loadResults(response){
     let project = projects[i];
     let projectCount = projects.length;
     resultContainer.innerHTML += 
-     `<article class="project-card">
+     `<article id="${i}" class="project-card">
         <div class="project-card__media">
           <a class="project-card__expand">
             <div class="project-card__media-browser">
@@ -78,7 +78,7 @@ function loadResults(response){
         </div>
         <div class="project-card__content">
           <h2 class="project-card__title">
-            <a class="project-card__expand">${project.title}</a>
+            <a class="project-card__expand">${project.title} ${[i]}</a>
           </h2>
           <div class="project-card__introduction">
             ${project.field_project_introduction}
@@ -180,23 +180,22 @@ function projectLoadClick(projects){
       main.classList.add('slideOutDown', 'main--hidden');
       searchContainer.classList.add('fadeOut');
       banner.classList.add('banner--full-screen');
-      loadProject(projects, [i]);
+      loadProject(projects, projectParent);
       closeProject();
     });
   }
 }
 
 // Load Project
-function loadProject(project, [i]){
-  console.log([i-1]);
-  console.log(project[i]);
-  project = project[i-1];
+function loadProject(project, projectParent){
+  projectId = projectParent.id;
+  project = project[projectId];
   activeProject.classList.remove('project--hidden');
   activeProject.innerHTML = 
   `
     <article class="project">
       <section class="project__header">
-        <h2 class="project__title">${project.title}</h2>
+        <h2 class="project__title">${project.title}${[i]}</h2>
         <a class="project__url" href="${project.field_project_link}">${project.field_project_link_1}</a>
         <div class="project__media">
           <div class="project__media-browser">
@@ -447,7 +446,6 @@ function filterButtonsRemove(buttonType) {
 // Remove filters for selected button type when removed
 
 function filterRemove(buttonType){
-  console.log('button type is ' + buttonType);
   article = resultContainer.getElementsByTagName('article');
   // Unhide related articles
   for (i = 0; i < article.length; i++) {
