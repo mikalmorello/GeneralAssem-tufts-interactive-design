@@ -9,4 +9,11 @@
 .aside {
   order: 1;
   width: 25%;
+  &--hidden {
+    height: 0;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 0;
+  }
 }
