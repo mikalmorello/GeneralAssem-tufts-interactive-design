@@ -69,6 +69,7 @@
 }
 
 @mixin border-line {
+  content: '';
   background: gray;
   height: 1px;
   left: 0;

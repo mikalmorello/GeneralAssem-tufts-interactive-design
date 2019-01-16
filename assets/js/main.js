@@ -78,7 +78,7 @@ function loadResults(response){
         </div>
         <div class="project-card__content">
           <h2 class="project-card__title">
-            <a class="project-card__expand">${project.title} ${[i]}</a>
+            <a class="project-card__expand">${project.title}</a>
           </h2>
           <div class="project-card__introduction">
             ${project.field_project_introduction}
@@ -195,7 +195,7 @@ function loadProject(project, projectParent){
   `
     <article class="project">
       <section class="project__header">
-        <h2 class="project__title">${project.title}${[i]}</h2>
+        <h2 class="project__title">${project.title}</h2>
         <a class="project__url" href="${project.field_project_link}">${project.field_project_link_1}</a>
         <div class="project__media">
           <div class="project__media-browser">
@@ -205,25 +205,25 @@ function loadProject(project, projectParent){
       </section>
       <section class="project__introduction">
         <div class="project__introduction-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ullamcorper orci dolor, nec tristique mauris suscipit in. Quisque pharetra tellus massa, vitae volutpat nunc consectetur ut.
+          ${project.field_project_introduction}
         </div>
       </section>
       <section class="project__content">
         <div class="project__main">
           <div class="project__body">
-            ${project.field_project_introduction}
+            ${project.body}
           </div>
         </div>
         <div class="project__sidebar">
           <div class="project__team">
-            <div class="project_subtitle">Project Team:</div>
-            <div class="project_item">
+            <div class="project__subtitle">Project Team:</div>
+            <div class="project__item">
               ${project.title_1}
             </div>
           </div>
           <div class="project__platform">
-            <div class="project_subtitle">Project Platform:</div>
-            <div class="project_item">
+            <div class="project__subtitle">Project Platform:</div>
+            <div class="project__item">
               ${project.field_project_platform}
             </div>
           </div>
