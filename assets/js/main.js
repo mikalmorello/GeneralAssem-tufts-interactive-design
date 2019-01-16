@@ -17,7 +17,8 @@ const xhr = new XMLHttpRequest(),
       countContainer = document.getElementById('apiResultsCount'),
       articleLoad = document.getElementsByClassName('project-card__expand'),
       menu = document.getElementsByClassName('menu')[0],
-      activeFilterContainer = document.getElementById('activeFilters');
+      activeFilterContainer = document.getElementById('activeFilters'),
+      menuIcon = document.getElementById('menuIcon');
       
 let searchInputValue = '',
     searchCount = 0,
@@ -180,6 +181,7 @@ function projectLoadClick(projects){
       main.classList.add('slideOutDown', 'main--hidden');
       searchContainer.classList.add('fadeOut');
       banner.classList.add('banner--full-screen');
+      menuIcon.classList.add('is-active');
       loadProject(projects, projectParent);
       closeProject();
     });
