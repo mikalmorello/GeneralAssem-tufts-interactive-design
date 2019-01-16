@@ -339,7 +339,6 @@ function projectResultCount(projectCount){
 
 // Active Filter Labels
 function filterButtonsAdd(element) {
-  console.log('filter buttons');
   /*Array.prototype.forEach.call(filterTeam, function(element) {
     if(element.)
   }*/
@@ -349,7 +348,6 @@ function filterButtonsAdd(element) {
     filterButtonList.push('team');
   } 
   filterButtonListUnique = filterButtonList.unique();
-  console.log(filterButtonListUnique);
   activeFilterContainer.innerHTML = '';
   filterButtonListUnique.forEach(function(filterButton) {
      activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}<img class="active-filters__img" src="assets/images/close.svg"></button>`; 
@@ -359,37 +357,50 @@ function filterButtonsAdd(element) {
  
 function filterButtonsClick() {
   let filterButtons = document.getElementsByClassName('active-filters__button');
-  console.log(filterButtonListUnique);
   Array.prototype.forEach.call(filterButtons, function(element) {
     let buttonType =  element.id;
     element.addEventListener('click', function() {
-      console.log(element.id + 'this element is clicked');
       filterButtonsRemove(buttonType);
+      filterRemove(buttonType);
     });
   });
 }
 
 
 function filterButtonsRemove(buttonType) {
-  console.log('button type ' + buttonType);
-  console.log(filterButtonListUnique);
   filterButtonListUnique = filterButtonListUnique.filter(function(e) { 
     return e !== buttonType;
   })
-  console.log(filterButtonListUnique);
-  /*
-  console.log(filterButtonListUnique);
   activeFilterContainer.innerHTML = '';
   filterButtonListUnique.forEach(function(filterButton) {
-    console.log('thing is ' + filterButton);
      activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}<img class="active-filters__img" src="assets/images/close.svg"></button>`; 
-  });*/
+    filterButtonsClick();
+  });
 }
+
+
+
+// Remove filters for selected button type when removed
+
+function filterRemove(buttonType){
+  console.log('button type is ' + buttonType);
+  article = resultContainer.getElementsByTagName('article');
+  // Unhide related articles
+  for (i = 0; i < article.length; i++) {
+    article[i].classList.remove(`project-card--${buttonType}-hide`);
+  }
+  // Remove active state from sidebar filter
+  let parent = document.getElementById(buttonType);
+    parent.querySelectorAll(`.projects-filter__${buttonType}`).forEach(function(element) {
+      element.classList.remove(`projects-filter__${buttonType}--active`);
+  });
+}
+
+
 // Autorun testing if you don't want to render a search
 /*function autoRun(searchValue) {
   callThatAPI(searchValue);
 }
-
 autoRun('tufts');*/
 
 
