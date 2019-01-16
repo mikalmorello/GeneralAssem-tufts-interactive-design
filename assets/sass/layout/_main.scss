@@ -14,5 +14,10 @@
   flex-direction: column;
   min-height: 100%; 
   //overflow: hidden;
-  position: relative;  
+  position: relative;
+  &--hidden {
+    //height: 0;
+    //overflow: hidden;
+    
+  }
 }

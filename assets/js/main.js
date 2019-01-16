@@ -1,11 +1,13 @@
 // VARIABLES
 const xhr = new XMLHttpRequest(),
       baseUrl = 'http://dev-tufts-interactive-design.pantheonsite.io/api/projects?_format=json',
+      main = document.getElementById('main'),
       banner = document.getElementById('banner'),
       aside = document.getElementById('aside'),
       content = document.getElementById('content'),
       searchInput = document.getElementById('searchInput'),
       searchButton = document.getElementById('searchButton'),
+      searchContainer = document.getElementById('searchContainer'),
       resultContainer = document.getElementById('projects'), 
       noResultsContainer = document.getElementById('noResults'),
       filterContainer = document.getElementById('apiResultsFilter'),
@@ -170,12 +172,22 @@ function projectLoadClick(projects){
       event.preventDefault();
       let projectParent = findParent(articleLoad[i], 'project-card');
       projectParent.classList.add('project-card--active');
-      banner.classList.add('banner--hidden');
-      aside.classList.add('aside--hidden');
-      content.classList.add('content--active-project');
+      //banner.classList.add('banner--hidden');
+      //aside.classList.add('aside--hidden');
+      //content.classList.add('content--active-project');
+      main.classList.add('slideOutDown', 'main--hidden');
+      searchContainer.classList.add('fadeOut');
+      banner.classList.add('banner--full-screen');
+      loadProject(projects, [i]);
       closeProject();
     });
   }
+}
+
+// Load Project
+function loadProject(project, [i]){
+  console.log(project[i]);
+  
 }
 
 // Close Project
@@ -185,9 +197,10 @@ function closeProject() {
     let activeProject = document.getElementsByClassName('project-card--active')[0];
     if(activeProject){
       activeProject.classList.remove('project-card--active');
-      banner.classList.remove('banner--hidden');
-      aside.classList.remove('aside--hidden');
-      content.classList.remove('content--active-project');
+      //banner.classList.remove('banner--hidden');
+      //aside.classList.remove('aside--hidden');
+      //content.classList.remove('content--active-project');
+      main
     }
     
   });
@@ -401,6 +414,8 @@ function filterRemove(buttonType){
       element.classList.remove(`projects-filter__${buttonType}--active`);
   });
 }
+
+
 
 
 // Autorun testing if you don't want to render a search

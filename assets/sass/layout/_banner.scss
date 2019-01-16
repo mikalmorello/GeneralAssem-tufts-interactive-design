@@ -18,7 +18,7 @@
   overflow: hidden;
   padding: 2.5rem;
   position:relative;
-  transition: min-height .25s;  
+  transition: min-height .5s ease-out;  
   &:before {
     background: $background-gray;
     bottom: -10%;
@@ -45,6 +45,7 @@
   &--full-screen {
     height: calc(100vh - 5rem);
     min-height: calc(100vh - 5rem);
+    transition: min-height .5s ease-in;  
   }
   &--hidden {
     height: 0; 
