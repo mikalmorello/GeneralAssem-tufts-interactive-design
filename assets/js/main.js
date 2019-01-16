@@ -73,7 +73,7 @@ function loadResults(response){
         <div class="project-card__media">
           <a class="project-card__expand">
             <div class="project-card__media-browser">
-              <img src="${project.field_project_banner}">
+              <img src="${project.field_project_banner_1}">
             </div>
           </a>
         </div>
