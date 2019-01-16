@@ -44,9 +44,9 @@
     
   }
   &--full-screen {
-    height: calc(100vh - 5rem);
+    //height: calc(100vh - 5rem);
     min-height: calc(100vh - 5rem);
-    transition: min-height .5s ease-in;  
+    transition: min-height .2s ease-in;  
   }
   &--hidden {
     height: 0; 

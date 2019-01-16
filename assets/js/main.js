@@ -175,15 +175,24 @@ function projectLoadClick(projects){
       event.preventDefault();
       let projectParent = findParent(articleLoad[i], 'project-card');
       projectParent.classList.add('project-card--active');
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
       //banner.classList.add('banner--hidden');
       //aside.classList.add('aside--hidden');
       //content.classList.add('content--active-project');
-      main.classList.add('slideOutDown', 'main--hidden');
-      searchContainer.classList.add('fadeOut');
       banner.classList.add('banner--full-screen');
       menuIcon.classList.add('is-active');
-      activeProject.classList.remove('slideOutDown');
-      loadProject(projects, projectParent);
+      setTimeout(function(){ 
+        main.classList.add('main--hidden');
+      }, 2000);
+      setTimeout(function(){
+        main.classList.add('slideOutDown');
+        searchContainer.classList.add('fadeOut');
+        activeProject.classList.remove('slideOutDown');
+        loadProject(projects, projectParent);
+      }, 400);
     });
   }
 }
@@ -192,7 +201,10 @@ function projectLoadClick(projects){
 function loadProject(project, projectParent){
   projectId = projectParent.id;
   project = project[projectId];
-  activeProject.classList.remove('project--hidden');
+  setTimeout(function(){ 
+    activeProject.classList.remove('project--hidden');
+    activeProject.classList.add('slideInUp');
+  }, 800);
   activeProject.innerHTML = 
   `
     <article class="project">
@@ -240,13 +252,19 @@ function loadProject(project, projectParent){
 
 function closeProject() {
   menuButton.addEventListener('click', function(){
+    activeProject.classList.remove('slideInUp');
     activeProject.classList.add('slideOutDown');
-    activeProject.classList.add('project--hidden');
-    main.classList.remove('slideOutDown', 'main--hidden');
     main.classList.add('slideInUp');
-    searchContainer.classList.remove('fadeOut');
+    main.classList.remove('slideOutDown', 'main--hidden');
+    setTimeout(function(){ 
+      searchContainer.classList.remove('fadeOut');
+      searchContainer.classList.add('fadeIn');
+    }, 500);
     banner.classList.remove('banner--full-screen');
     menuIcon.classList.remove('is-active');
+    setTimeout(function(){ 
+      activeProject.classList.add('project--hidden');
+    }, 300);
   });
 }
 
@@ -457,9 +475,6 @@ function filterRemove(buttonType){
       element.classList.remove(`projects-filter__${buttonType}--active`);
   });
 }
-
-
-
 
 // Autorun testing if you don't want to render a search
 /*function autoRun(searchValue) {
