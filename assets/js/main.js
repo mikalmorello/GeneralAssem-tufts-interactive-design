@@ -315,6 +315,7 @@ function projectFilterEvent(projects){
       }
       // Add / Remove filter buttons
       filterButtonsAdd(element);
+      
     });
   });
   
@@ -351,11 +352,39 @@ function filterButtonsAdd(element) {
   console.log(filterButtonListUnique);
   activeFilterContainer.innerHTML = '';
   filterButtonListUnique.forEach(function(filterButton) {
-    console.log('thing is ' + filterButton);
      activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}<img class="active-filters__img" src="assets/images/close.svg"></button>`; 
   });
+  filterButtonsClick();
 } 
  
+function filterButtonsClick() {
+  let filterButtons = document.getElementsByClassName('active-filters__button');
+  console.log(filterButtonListUnique);
+  Array.prototype.forEach.call(filterButtons, function(element) {
+    let buttonType =  element.id;
+    element.addEventListener('click', function() {
+      console.log(element.id + 'this element is clicked');
+      filterButtonsRemove(buttonType);
+    });
+  });
+}
+
+
+function filterButtonsRemove(buttonType) {
+  console.log('button type ' + buttonType);
+  console.log(filterButtonListUnique);
+  filterButtonListUnique = filterButtonListUnique.filter(function(e) { 
+    return e !== buttonType;
+  })
+  console.log(filterButtonListUnique);
+  /*
+  console.log(filterButtonListUnique);
+  activeFilterContainer.innerHTML = '';
+  filterButtonListUnique.forEach(function(filterButton) {
+    console.log('thing is ' + filterButton);
+     activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}<img class="active-filters__img" src="assets/images/close.svg"></button>`; 
+  });*/
+}
 // Autorun testing if you don't want to render a search
 /*function autoRun(searchValue) {
   callThatAPI(searchValue);
@@ -386,4 +415,6 @@ searchButton.addEventListener('click', function() {
   searchInputValue = searchInput.value;
   return searchInputValue;
 });
+
+
 
