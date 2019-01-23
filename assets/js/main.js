@@ -29,9 +29,7 @@ let searchInputValue = '',
     platformListUnique = [],
     activeTeam = '', 
     activePlatform = '',
-    filterButtonList = [],
-    filterButtonListUnique = [];
-
+    filterButtonList = [];
 
 // FUNCTIONS
 
@@ -64,7 +62,6 @@ function handleError() {
 
 function loadResults(response){
   var projects = response;
-  console.log(projects);
   for(let i = 0; i < projects.length; i++) { 
     let project = projects[i];
     let projectCount = projects.length;
@@ -179,9 +176,6 @@ function projectLoadClick(projects){
         top: 0,
         behavior: 'smooth'
       });
-      //banner.classList.add('banner--hidden');
-      //aside.classList.add('aside--hidden');
-      //content.classList.add('content--active-project');
       banner.classList.add('banner--full-screen');
       menuIcon.classList.add('is-active');
       setTimeout(function(){ 
@@ -345,9 +339,8 @@ function projectFilterEvent(projects){
     element.addEventListener('click', function(){
       event.preventDefault();
       // Remove classes from siblings
-      let parent = document.getElementById('team');
-      parent.querySelectorAll( ".projects-filter__team" ).forEach(function(element) {
-        element.classList.remove('projects-filter__team--active');
+      document.querySelectorAll( ".projects-filter__team" ).forEach(function(sibling) {
+        sibling.classList.remove('projects-filter__team--active');
       });
       // Add active class
       element.classList.add('projects-filter__team--active');
@@ -375,9 +368,8 @@ function projectFilterEvent(projects){
     element.addEventListener('click', function(){
       event.preventDefault();
       // Remove classes from siblings
-      let parent = document.getElementById('platform');
-      parent.querySelectorAll( ".projects-filter__platform" ).forEach(function(element) {
-        element.classList.remove('projects-filter__platform--active');
+      document.querySelectorAll( ".projects-filter__platform" ).forEach(function(sibling) {
+        sibling.classList.remove('projects-filter__platform--active');
       });
       // Add active class
       element.classList.add('projects-filter__platform--active');
@@ -396,7 +388,6 @@ function projectFilterEvent(projects){
       }
       // Add / Remove filter buttons
       filterButtonsAdd(element);
-      
     });
   });
   
@@ -420,17 +411,14 @@ function projectResultCount(projectCount){
 
 // Active Filter Labels
 function filterButtonsAdd(element) {
-  /*Array.prototype.forEach.call(filterTeam, function(element) {
-    if(element.)
-  }*/
   if(element.classList.contains('projects-filter__platform--active')){
     filterButtonList.push('platform');
   } else if(element.classList.contains('projects-filter__team--active')){
     filterButtonList.push('team');
   } 
-  filterButtonListUnique = filterButtonList.unique();
+  filterButtonList = filterButtonList.unique();
   activeFilterContainer.innerHTML = '';
-  filterButtonListUnique.forEach(function(filterButton) {
+  filterButtonList.forEach(function(filterButton) {
      activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}<img class="active-filters__img" src="assets/images/close.svg"></button>`; 
   });
   filterButtonsClick();
@@ -445,15 +433,16 @@ function filterButtonsClick() {
       filterRemove(buttonType);
     });
   });
+  
 }
 
 
 function filterButtonsRemove(buttonType) {
-  filterButtonListUnique = filterButtonListUnique.filter(function(e) { 
+  filterButtonList = filterButtonList.filter(function(e) { 
     return e !== buttonType;
   })
   activeFilterContainer.innerHTML = '';
-  filterButtonListUnique.forEach(function(filterButton) {
+  filterButtonList.forEach(function(filterButton) {
      activeFilterContainer.innerHTML += `<button id="${filterButton}" class="active-filters__button">${filterButton}<img class="active-filters__img" src="assets/images/close.svg"></button>`; 
     filterButtonsClick();
   });
